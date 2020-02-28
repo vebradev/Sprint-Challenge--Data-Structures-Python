@@ -1,4 +1,5 @@
 import time
+from bst import bst
 
 start_time = time.time()
 
@@ -13,10 +14,24 @@ f.close()
 duplicates = []  # Return the list of duplicates in this data structure
 
 # Replace the nested for loops below with your improvements
-for name_1 in names_1:
-    for name_2 in names_2:
-        if name_1 == name_2:
-            duplicates.append(name_1)
+# for name_1 in names_1:
+#     for name_2 in names_2:
+#         if name_1 == name_2:
+#             duplicates.append(name_1)
+
+# create new tree and set the root value
+tree = bst(names_1[0])
+
+# loop over names_1 list and insert names to tree
+# so I could utilise bst contains method on it
+for name in names_1:
+    tree.insert(name)
+# loop over names_2 list and pass each name to contains method
+# of tree in order to find duplicates
+# append to duplicates list if found
+for name in names_2:
+    if tree.contains(name):
+        duplicates.append(name)
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
